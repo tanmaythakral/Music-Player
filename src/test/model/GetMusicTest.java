@@ -17,13 +17,13 @@ public class GetMusicTest {
     @Test
     void openFolderTest() {
         GetMusic getMusic = new GetMusic();
-        List<String> contents = getMusic.openFolder("songs");
+
         List<String> result =new ArrayList<String>();
 
         result.add("a_test_sound.mp3");
         result.add("Dance-Monkey.mp3");
         result.add("Owl-City-Fireflies.mp3");
 
-        assertEquals(contents,result);
+        assertEquals(getMusic.openFolder("songs"),result);
     }
 }
