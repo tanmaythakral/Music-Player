@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
-import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

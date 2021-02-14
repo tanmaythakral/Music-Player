@@ -3,12 +3,15 @@ package ui;
 import model.GetMusic;
 import model.Music;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-
+// Music Player Application
 public class MusicPlayerApp {
     boolean keepGoing;
     Music playingMusic;
+    List<String> songsList = new ArrayList<String>();
     boolean playing;
     String filePath;
     String songName;
@@ -16,10 +19,13 @@ public class MusicPlayerApp {
     Scanner input = new Scanner(System.in);
     Scanner command = new Scanner(System.in);
 
+    // EFFECTS: runs the Music Player application
     public MusicPlayerApp() {
         runMusicApp();
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user input and prints the songs present the the music directory
     private void runMusicApp() {
 
         System.out.println("Hi q(≧▽≦q) "
@@ -29,6 +35,7 @@ public class MusicPlayerApp {
         this.filePath = filename;
 
         try {
+            System.out.println("List of Songs in the specified directory are:");
             getMusic.openFolder(filename);
         } catch (Exception exception) {
             System.out.println("Oops! Enter Valid Directory Path");
@@ -36,13 +43,10 @@ public class MusicPlayerApp {
             runMusicApp();
         }
 
-        startSong();
-    }
-
-    public void startSong() {
         getSongName();
         playMusic();
     }
+
 
     private void getSongName() {
         System.out.println("Enter song name to play (with extension)");
@@ -50,7 +54,8 @@ public class MusicPlayerApp {
         this.songName = name;
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: plays the music from user input
     private void playMusic() {
         try {
             Music music = new Music(filePath + "\\" + songName);
@@ -63,6 +68,8 @@ public class MusicPlayerApp {
         commands();
     }
 
+    // MODIFIES: this
+    // EFFECTS: list of user executable commands
     private void commands() {
         while (true) {
             String commands = command.nextLine();
@@ -72,30 +79,61 @@ public class MusicPlayerApp {
                 resume();
             } else if (commands.equals("-stop")) {
                 stop();
-            } else if (commands.equals("-next")) {
+                break;
+            } else if (commands.equals("-next song")) {
                 next();
+            } else if (commands.equals("-playlist")) {
+                playlist();
+            } else if (commands.equals("-addtoplaylist")) {
+                addplaylist();
             } else {
                 commandList();
-                System.out.println(playingMusic.isAlive());
             }
         }
     }
 
+
+    // EFFECTS: prints the user-made playlist
+    private void playlist() {
+        for (String song : songsList) {
+            System.out.println(song);
+        }
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: adds user input to the playlist
+    private void addplaylist() {
+        System.out.println("Add songs in playlist, type name: ");
+        getSongName();
+        songsList.add(songName);
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: pauses the song
     private void pause() {
         playingMusic.suspend();
         playing = false;
     }
 
+    // MODIFIES: this
+    // EFFECTS: resumes the song
     private void resume() {
         playingMusic.resume();
         playing = true;
     }
 
+    // MODIFIES: this
+    // EFFECTS: stops the player
     private void stop() {
         playingMusic.stop();
         playing = false;
+        System.out.println("GoodBye!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: plays next song from user input
     private void next() {
         playingMusic.stop();
         getSongName();
@@ -103,16 +141,19 @@ public class MusicPlayerApp {
         playMusic();
     }
 
-    public boolean isPlaying() {
+    public boolean getPlaying() {
         return playing;
     }
 
+    //EFFECT : prints the list of user executable commands
     private void commandList() {
 
         System.out.println("To pause the song , type -pause"
                 + "\n To  resume the song , type -resume"
                 + "\n To stop the song, type -stop" + "\n To select the next song ,type -next"
-                + "\nand the enter the song name.");
+                + "\nand the enter the song name."
+                + "\nTo check playlist type -playlist"
+                + "\nTo add to playlist, type -addtoplaylist");
 
     }
 }
