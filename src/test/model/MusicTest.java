@@ -18,15 +18,16 @@ class MusicTest {
 
     @Test
     void playTest() {
-        Music music = new Music("songs/Dance-Monkey.mp3");
+        Music music = new Music("songs/a_test_sound.mp3");
         music.start();
-
         assertTrue(music.isAlive());
+        music.run();
+        assertFalse(music.isAlive());
     }
 
     @Test
     void pauseTest() {
-        Music music = new Music("songs/Dance-Monkey.mp3");
+        Music music = new Music("songs/a_test_sound.mp3");
         music.start();
         assertTrue(music.isAlive());
 
@@ -37,16 +38,18 @@ class MusicTest {
 
     @Test
     void stopTest() {
-        Music music = new Music("songs/Dance-Monkey.mp3");
+        Music music = new Music("songs/a_test_sound.mp3");
         music.start();
         assertTrue(music.isAlive());
-
+        music.run();
         music.stop();
         System.out.println(".");
         System.out.println(".");
         System.out.println(".");
         System.out.println(".");
         assertFalse(music.isAlive());
+
+
     }
 
 

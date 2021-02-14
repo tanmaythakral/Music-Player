@@ -36,7 +36,11 @@ public class MusicPlayerApp {
 
         try {
             System.out.println("List of Songs in the specified directory are:");
-            getMusic.openFolder(filename);
+
+            for (int i = 0; i < getMusic.openFolder(filename).size(); i++) {
+                System.out.println(getMusic.openFolder(filename).get(i));
+            }
+
         } catch (Exception exception) {
             System.out.println("Oops! Enter Valid Directory Path");
             keepGoing = false;
