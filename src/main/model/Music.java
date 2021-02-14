@@ -27,7 +27,7 @@ public class Music extends Thread {
             player.play();
 
         } catch (FileNotFoundException | JavaLayerException e) {
-            System.out.println("File Not Found or Cant play, try again");
+            System.out.print("File Not Found or Cant play, try again");
         }
     }
 }

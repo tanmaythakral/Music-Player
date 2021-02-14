@@ -2,8 +2,11 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,11 +51,17 @@ class MusicTest {
     }
 
 
-//    @Test
-//    void checkException() {
-//        ExpectedException thrown = ExpectedException.none();
-//        Music music = new Music("songs/hello.txt");
-//        music.start();
-//        thrown.expectMessage("File Not Found or Cant play, try again");
-//    }
+    @Test
+    void checkException() {
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        final PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outContent));
+
+        Music music = new Music("songs/hello.txt");
+        music.run();
+
+        assertEquals("File Not Found or Cant play, try again", outContent.toString());
+        System.setOut(originalOut);
+    }
+
 }
