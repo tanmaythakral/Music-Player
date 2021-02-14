@@ -18,7 +18,7 @@ class MusicTest {
 
     @Test
     void playTest() {
-        Music music = new Music("./songs/a_test_sound.mp3");
+        Music music = new Music("songs/a_test_sound.mp3");
         music.start();
         assertTrue(music.isAlive());
         music.run();
@@ -30,9 +30,9 @@ class MusicTest {
         Music music = new Music("./songs/a_test_sound.mp3");
         music.start();
         assertTrue(music.isAlive());
-
+        music.run();
         music.suspend();
-        assertTrue(music.isAlive());
+        assertFalse(music.isAlive());
 
     }
 
