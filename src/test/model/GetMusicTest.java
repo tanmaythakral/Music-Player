@@ -24,6 +24,6 @@ public class GetMusicTest {
         result.add("Dance-Monkey.mp3");
         result.add("Owl-City-Fireflies.mp3");
 
-        assertEquals(getMusic.openFolder("songs"),result);
+        assertEquals(getMusic.openFolder("./songs"),result);
     }
 }
