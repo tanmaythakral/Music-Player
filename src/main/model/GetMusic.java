@@ -4,7 +4,6 @@ import java.io.File;
 
 // class for getting songs from the user provided path
 public class GetMusic {
-    private String[] songs;
 
     /*
      * REQUIRES: accountName has a non-zero length
@@ -22,7 +21,4 @@ public class GetMusic {
         return pathname;
     }
 
-    public String[] getSongs() {
-        return songs;
-    }
 }

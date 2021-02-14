@@ -1,8 +1,10 @@
 package model;
 
+import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 // Class for initialling the music player and player related methods
 public class Music extends Thread {
@@ -24,7 +26,7 @@ public class Music extends Thread {
             AdvancedPlayer player = new AdvancedPlayer(fileInputStream);
             player.play();
 
-        } catch (Exception e) {
+        } catch (FileNotFoundException | JavaLayerException e) {
             System.out.println("File Not Found or Cant play, try again");
         }
     }
