@@ -24,6 +24,8 @@ public class GetMusicTest {
         result.add("Dance-Monkey.mp3");
         result.add("Owl-City-Fireflies.mp3");
 
-        assertEquals(getMusic.openFolder("./songs"),result);
+        assertTrue(getMusic.openFolder("./songs").contains("a_test_sound.mp3"));
+        assertTrue(getMusic.openFolder("./songs").contains("Dance-Monkey.mp3"));
+        assertTrue(getMusic.openFolder("./songs").contains("Owl-City-Fireflies.mp3"));
     }
 }

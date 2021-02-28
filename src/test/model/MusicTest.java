@@ -13,26 +13,19 @@ class MusicTest {
 
     @BeforeEach
     void runBefore() {
-        Music music = new Music("./songs/Dance-Monkey.mp3");
+        Music music = new Music("songs/a_test_sound.mp3");
+        music.run();
     }
 
     @Test
     void playTest() {
         Music music = new Music("songs/a_test_sound.mp3");
-        music.start();
-        assertTrue(music.isAlive());
-    }
-
-    @Test
-    void pauseTest() {
-        Music music = new Music("./songs/a_test_sound.mp3");
-        music.start();
-        assertTrue(music.isAlive());
         music.run();
-        music.suspend();
-        assertFalse(music.isAlive());
-
+        music.start();
+        assertTrue(music.isAlive());
+        music.stop();
     }
+
 
     @Test
     void stopTest() {
@@ -49,7 +42,7 @@ class MusicTest {
         System.out.println(".");
         System.out.println(".");
         assertFalse(music.isAlive());
-
+        music.stop();
 
     }
 
@@ -65,6 +58,8 @@ class MusicTest {
 
         assertEquals("File Not Found or Cant play, try again", outContent.toString());
         System.setOut(originalOut);
+
+        music.stop();
     }
 
 }
