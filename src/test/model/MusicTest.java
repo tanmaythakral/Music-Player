@@ -21,8 +21,6 @@ class MusicTest {
         Music music = new Music("songs/a_test_sound.mp3");
         music.start();
         assertTrue(music.isAlive());
-        music.run();
-        assertFalse(music.isAlive());
     }
 
     @Test
@@ -42,6 +40,10 @@ class MusicTest {
         music.start();
         assertTrue(music.isAlive());
         music.stop();
+        System.out.println(".");
+        System.out.println(".");
+        System.out.println(".");
+        System.out.println(".");
         System.out.println(".");
         System.out.println(".");
         System.out.println(".");

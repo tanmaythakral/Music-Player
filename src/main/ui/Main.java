@@ -1,8 +1,14 @@
 package ui;
 
+import java.io.FileNotFoundException;
+
 public class Main {
     public static void main(String[] args) {
 
-        new MusicPlayerApp();
+        try {
+            new MusicPlayerApp();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

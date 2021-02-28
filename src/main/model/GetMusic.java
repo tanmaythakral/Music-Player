@@ -18,5 +18,4 @@ public class GetMusic {
         List<String> contents = Arrays.asList(Objects.requireNonNull(directoryPath.list()));
         return contents;
     }
-
 }

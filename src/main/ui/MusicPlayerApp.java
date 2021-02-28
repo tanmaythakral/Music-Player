@@ -1,8 +1,12 @@
 package ui;
 
 import model.GetMusic;
+import model.JsonReader;
+import model.JsonWriter;
 import model.Music;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,13 +24,13 @@ public class MusicPlayerApp {
     Scanner command = new Scanner(System.in);
 
     // EFFECTS: runs the Music Player application
-    public MusicPlayerApp() {
+    public MusicPlayerApp() throws FileNotFoundException {
         runMusicApp();
     }
 
     // MODIFIES: this
     // EFFECTS: processes user input and prints the songs present the the music directory
-    private void runMusicApp() {
+    private void runMusicApp() throws FileNotFoundException {
 
         System.out.println("Hi q(≧▽≦q) "
                 + "\n To play your music please enter the absolute path to the music directory");
@@ -60,7 +64,7 @@ public class MusicPlayerApp {
 
     // MODIFIES: this
     // EFFECTS: plays the music from user input
-    private void playMusic() {
+    private void playMusic() throws FileNotFoundException {
         try {
             Music music = new Music(filePath + "\\" + songName);
             this.playingMusic = music;
@@ -74,7 +78,7 @@ public class MusicPlayerApp {
 
     // MODIFIES: this
     // EFFECTS: list of user executable commands
-    private void commands() {
+    private void commands() throws FileNotFoundException {
         while (true) {
             String commands = command.nextLine();
             if (commands.equals("-pause")) {
@@ -90,29 +94,85 @@ public class MusicPlayerApp {
                 playlist();
             } else if (commands.equals("-addtoplaylist")) {
                 addplaylist();
+            } else if (commands.equals("-play playlist")) {
+                playplaylist();
             } else {
                 commandList();
             }
         }
     }
 
+//    private void playlistcommands() {
+//        String commands = command.nextLine();
+//        if (commands.equals("-pause")) {
+//            pause();
+//        } else if (commands.equals("-resume")) {
+//            resume();
+//        }  else if (commands.equals("-shuffle")) {
+//            Collections.shuffle(songsList);
+//        }  else {
+//            commandList();
+//        }
+//    }
+
 
     // EFFECTS: prints the user-made playlist
     private void playlist() {
+        JsonReader jsonReader = new JsonReader();
+//        try {
+//            this.songsList = jsonReader.read();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        try {
+            this.songsList = jsonReader.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         for (String song : songsList) {
             System.out.println(song);
         }
     }
 
+    private void playplaylist() {
+
+        for (String song : songsList) {
+            Music music = new Music(filePath + "\\" + song);
+            this.playingMusic = music;
+            music.start();
+            while (music.isAlive()) {
+//                playlistcommands();
+//                String commands = command.nextLine();
+//                if (commands.equals("-stop playlist")) {
+//                    break;
+//                } else if (commands.equals("-next song")) {
+//                    continue;
+//                }
+            }
+            if (!music.isAlive()) {
+                System.out.println("playing next song");
+            }
+        }
+    }
 
     // MODIFIES: this
     // EFFECTS: adds user input to the playlist
-    private void addplaylist() {
+    private void addplaylist() throws FileNotFoundException {
         System.out.println("Add songs in playlist, type name: ");
         getSongName();
         songsList.add(songName);
+
+        JsonWriter jsonWriter = new JsonWriter(songsList,"data/playlistdata.json");
+        jsonWriter.write();
+
+
     }
 
+    public List<String> getSongsList() {
+        return songsList;
+    }
 
     // MODIFIES: this
     // EFFECTS: pauses the song
@@ -138,7 +198,7 @@ public class MusicPlayerApp {
 
     // MODIFIES: this
     // EFFECTS: plays next song from user input
-    private void next() {
+    private void next() throws FileNotFoundException {
         playingMusic.stop();
         getSongName();
         Music music = new Music(filePath + "\\" + songName);
@@ -154,7 +214,8 @@ public class MusicPlayerApp {
 
         System.out.println("To pause the song , type -pause"
                 + "\n To  resume the song , type -resume"
-                + "\n To stop the song, type -stop" + "\n To select the next song ,type -next"
+                + "\n To stop the song, type -stop"
+                + "\n To select the next song ,type -next song"
                 + "\nand the enter the song name."
                 + "\nTo check playlist type -playlist"
                 + "\nTo add to playlist, type -addtoplaylist");
