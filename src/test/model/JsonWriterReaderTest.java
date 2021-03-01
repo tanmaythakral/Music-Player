@@ -35,7 +35,7 @@ public class JsonWriterReaderTest {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        JsonReader jsonReader = new JsonReader();
+        JsonReader jsonReader = new JsonReader("data/readtest.json");
         assertEquals(jsonReader.read(),testlist);
     }
 }

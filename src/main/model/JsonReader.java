@@ -12,10 +12,15 @@ import java.util.stream.Stream;
 
 public class JsonReader {
     List songlist = new ArrayList<String>();
+    String source;
+
+    public JsonReader(String source) {
+        this.source = source;
+    }
 
     public List read() throws IOException {
 
-        String jsonData = readFile("data/playlistdata.json");
+        String jsonData = readFile(source);
         JSONArray jsonObject = new JSONArray(jsonData);
 
         JSONObject name = (JSONObject) jsonObject.get(0);

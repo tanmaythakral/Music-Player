@@ -8,8 +8,10 @@ import model.Music;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 // Music Player Application
 public class MusicPlayerApp {
@@ -17,6 +19,8 @@ public class MusicPlayerApp {
     Music playingMusic;
     List<String> songsList = new ArrayList<String>();
     boolean playing;
+    boolean stopPlaylist;
+    String nextSong;
     String filePath;
     String songName;
     Scanner fileName = new Scanner(System.in);
@@ -83,18 +87,19 @@ public class MusicPlayerApp {
             String commands = command.nextLine();
             if (commands.equals("-pause")) {
                 pause();
-            } else if (commands.equals("-resume")) {
+            } else if (commands.equals("-res")) {
                 resume();
             } else if (commands.equals("-stop")) {
                 stop();
                 break;
-            } else if (commands.equals("-next song")) {
+            } else if (commands.equals("-ns")) {
                 next();
-            } else if (commands.equals("-playlist")) {
+            } else if (commands.equals("-pl")) {
                 playlist();
-            } else if (commands.equals("-addtoplaylist")) {
-                addplaylist();
-            } else if (commands.equals("-play playlist")) {
+            } else if (commands.equals("-modpl")) {
+                modifyplaylist();
+            } else if (commands.equals("-playpl")) {
+                playingMusic.suspend();
                 playplaylist();
             } else {
                 commandList();
@@ -102,23 +107,10 @@ public class MusicPlayerApp {
         }
     }
 
-//    private void playlistcommands() {
-//        String commands = command.nextLine();
-//        if (commands.equals("-pause")) {
-//            pause();
-//        } else if (commands.equals("-resume")) {
-//            resume();
-//        }  else if (commands.equals("-shuffle")) {
-//            Collections.shuffle(songsList);
-//        }  else {
-//            commandList();
-//        }
-//    }
-
 
     // EFFECTS: prints the user-made playlist
     private void playlist() {
-        JsonReader jsonReader = new JsonReader();
+        JsonReader jsonReader = new JsonReader("data/playlistdata.json");
 //        try {
 //            this.songsList = jsonReader.read();
 //        } catch (IOException e) {
@@ -137,36 +129,115 @@ public class MusicPlayerApp {
     }
 
     private void playplaylist() {
-
-        for (String song : songsList) {
+        stopPlaylist = false;
+        playlist();
+        String[] arr = songsList.toArray(new String[0]);
+        int counter = 0;
+        for (String song : arr) {
+            try {
+                nextSong = arr[counter + 1];
+            } catch (Exception e) {
+                nextSong = "last song";
+            }
+            counter++;
             Music music = new Music(filePath + "\\" + song);
             this.playingMusic = music;
-            music.start();
-            while (music.isAlive()) {
-//                playlistcommands();
-//                String commands = command.nextLine();
-//                if (commands.equals("-stop playlist")) {
-//                    break;
-//                } else if (commands.equals("-next song")) {
-//                    continue;
-//                }
+            playingMusic.start();
+            playlistcommands();
+
+            if (stopPlaylist) {
+                break;
             }
-            if (!music.isAlive()) {
-                System.out.println("playing next song");
+        }
+    }
+
+    public void playlistcommands() {
+        while (playingMusic.isAlive()) {
+            String commands = command.nextLine();
+            if (commands.equals("-pause")) {
+                pause();
+            } else if (commands.equals("-res")) {
+                resume();
+            } else if (commands.equals("-shuffle")) {
+                Collections.shuffle(songsList);
+            } else if (commands.equals("-stop")) {
+                stopPlaylist = true;
+                break;
+            } else if (commands.equals("-ns")) {
+                System.out.println("playing next :" + nextSong);
+                pause();
+                break;
             }
+        }
+        if (!playingMusic.isAlive()) {
+            System.out.println("playing next :" + nextSong);
+        }
+    }
+
+    private void modifyplaylist() {
+        System.out.println("To add songs to playlist, -a"
+                + "\n To remove songs from playlist -r");
+        String commands = command.nextLine();
+
+        if (commands.equals("-a")) {
+            try {
+                addplaylist();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else if (commands.equals("-r")) {
+            try {
+                removefromplaylist();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            modifyplaylist();
         }
     }
 
     // MODIFIES: this
     // EFFECTS: adds user input to the playlist
     private void addplaylist() throws FileNotFoundException {
+        JsonReader jsonReader = new JsonReader("data/playlistdata.json");
+        try {
+            this.songsList = jsonReader.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Add songs in playlist, type name: ");
         getSongName();
         songsList.add(songName);
 
-        JsonWriter jsonWriter = new JsonWriter(songsList,"data/playlistdata.json");
+        List<String> songsList = this.songsList.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        JsonWriter jsonWriter = new JsonWriter(songsList, "data/playlistdata.json");
         jsonWriter.write();
 
+    }
+
+    private void removefromplaylist() throws FileNotFoundException {
+        JsonReader jsonReader = new JsonReader("data/playlistdata.json");
+        try {
+            this.songsList = jsonReader.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Add songs in playlist, type name: ");
+        getSongName();
+
+        List<String> songsList = this.songsList.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        songsList.remove(songName);
+
+        JsonWriter jsonWriter = new JsonWriter(songsList, "data/playlistdata.json");
+        jsonWriter.write();
 
     }
 
@@ -213,12 +284,12 @@ public class MusicPlayerApp {
     private void commandList() {
 
         System.out.println("To pause the song , type -pause"
-                + "\n To  resume the song , type -resume"
+                + "\n To  resume the song , type -re"
                 + "\n To stop the song, type -stop"
-                + "\n To select the next song ,type -next song"
+                + "\n To select the next song ,type -ns"
                 + "\nand the enter the song name."
-                + "\nTo check playlist type -playlist"
-                + "\nTo add to playlist, type -addtoplaylist");
+                + "\nTo check playlist type -pl"
+                + "\nTo modify the playlist, type -modpl");
 
     }
 }
