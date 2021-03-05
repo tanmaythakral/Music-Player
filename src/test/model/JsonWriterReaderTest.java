@@ -38,4 +38,12 @@ public class JsonWriterReaderTest {
         JsonReader jsonReader = new JsonReader("data/readtest.json");
         assertEquals(jsonReader.read(),testlist);
     }
+
+    @Test
+    void emptyread() throws FileNotFoundException {
+
+            JsonWriter jsonWriter = new JsonWriter(testlist,"data/emptyreadtest.json");
+            jsonWriter.write();
+
+    }
 }

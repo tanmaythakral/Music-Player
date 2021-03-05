@@ -35,7 +35,7 @@ public class JsonReader {
             for (int i = 0; i < name.names().length(); i++) {
                 songlist.add(name.get(name.names().getString(i)));
             }
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             System.out.println("No Songs in Playlist");
         }
 
