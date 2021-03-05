@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GetMusicTest {
+public class MusicFetcherTest {
     @BeforeEach
     void init() {
         GetMusic getMusic = new GetMusic();
@@ -19,7 +19,6 @@ public class GetMusicTest {
         GetMusic getMusic = new GetMusic();
 
         List<String> result =new ArrayList<String>();
-//[Ariana Grande - One Last Time.mp3, Avicii-The-Nights.mp3, a_test_sound.mp3, Dance-Monkey.mp3, Kygo-Stargazing.mp3, Oh Wonder - Ultralife.mp3, OneRepublic - Counting Stars.mp3, Owl-City-Fireflies.mp3, twenty-one-pilots-Stressed-Out.mp3]
         result.add("Ariana Grande - One Last Time.mp3");
         result.add("Avicii-The-Nights.mp3");
         result.add("a_test_sound.mp3");
@@ -30,11 +29,10 @@ public class GetMusicTest {
         result.add("Owl-City-Fireflies.mp3");
         result.add("twenty-one-pilots-Stressed-Out.mp3");
 
-
-        assertEquals(getMusic.openFolder("./songs"), result);
-        assertTrue(getMusic.openFolder("./songs").contains("a_test_sound.mp3"));
+        assertEquals(result,getMusic.openFolder("songs"));
+        assertTrue(getMusic.openFolder("songs").contains("a_test_sound.mp3"));
         assertTrue(getMusic.openFolder("./songs").contains("Dance-Monkey.mp3"));
         assertTrue(getMusic.openFolder("./songs").contains("Owl-City-Fireflies.mp3"));
-        assertFalse(getMusic.openFolder("./songs").contains("gfdfgds"));
+        assertFalse(getMusic.openFolder("./songs").contains("anything"));
     }
 }

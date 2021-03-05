@@ -28,7 +28,7 @@ public class JsonWriterReaderTest {
     }
 
     @Test
-    void writetest() throws IOException {
+    void writeTest() throws IOException {
         try {
             JsonWriter jsonWriter = new JsonWriter(testlist,"data/readtest.json");
             jsonWriter.write();
@@ -40,10 +40,12 @@ public class JsonWriterReaderTest {
     }
 
     @Test
-    void emptyread() throws FileNotFoundException {
+    void emptyRead() throws IOException {
 
-            JsonWriter jsonWriter = new JsonWriter(testlist,"data/emptyreadtest.json");
-            jsonWriter.write();
+        try{JsonReader jsonReader = new JsonReader("data/emptyreadtest.json");
+        jsonReader.read();}catch (Exception e) {
+            fail("got it!");
+        }
 
     }
 }
