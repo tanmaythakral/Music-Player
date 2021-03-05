@@ -11,7 +11,9 @@ public class JsonWriter {
     JSONArray jsonObject;
     List songlist;
     String source;
-    
+
+    // MODIFIES : this
+    // EFFECT: Constructs the Json Writer Class
     public JsonWriter(List songlist,String source) throws FileNotFoundException {
         JSONArray jo = new JSONArray();
         this.jsonObject = jo;
@@ -19,6 +21,8 @@ public class JsonWriter {
         this.source = source;
     }
 
+    // MODIFIES : this
+    // EFFECT: Writes the objects from a list to a  Json file
     public void write() throws FileNotFoundException {
         
 

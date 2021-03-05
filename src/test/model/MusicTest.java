@@ -62,4 +62,14 @@ class MusicTest {
         music.stop();
     }
 
+    @Test
+    void checkException1() {
+        try {
+            Music music = new Music("./songs/hello.txt");
+            music.run();
+        } catch (Exception e){
+            fail("Exception!");
+        }
+    }
+
 }
