@@ -30,16 +30,17 @@ public class MusicFetcherTest {
         result.add("Owl-City-Fireflies.mp3");
         result.add("twenty-one-pilots-Stressed-Out.mp3");
 
-        List<String> test = new LinkedList<String>(getMusic.openFolder("songs"));
+        List<String> test = new LinkedList<String>(getMusic.openFolder("data/songs"));
+        assertEquals(test.size(),result.size());
         for (String string :result) {
             test.remove(string);
         }
         assertEquals(test.size(),0);
 
-        assertEquals(result,getMusic.openFolder("songs"));
-        assertTrue(getMusic.openFolder("songs").contains("a_test_sound.mp3"));
-        assertTrue(getMusic.openFolder("./songs").contains("Dance-Monkey.mp3"));
-        assertTrue(getMusic.openFolder("./songs").contains("Owl-City-Fireflies.mp3"));
-        assertFalse(getMusic.openFolder("./songs").contains("anything"));
+        assertEquals(result,getMusic.openFolder("data/songs"));
+        assertTrue(getMusic.openFolder("data/songs").contains("a_test_sound.mp3"));
+        assertTrue(getMusic.openFolder("data/songs").contains("Dance-Monkey.mp3"));
+        assertTrue(getMusic.openFolder("data/songs").contains("Owl-City-Fireflies.mp3"));
+        assertFalse(getMusic.openFolder("data/songs").contains("anything"));
     }
 }

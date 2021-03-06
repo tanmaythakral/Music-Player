@@ -13,13 +13,13 @@ class MusicTest {
 
     @BeforeEach
     void runBefore() {
-        Music music = new Music("songs/a_test_sound.mp3");
+        Music music = new Music("./data/songs/a_test_sound.mp3");
         music.run();
     }
 
     @Test
     void playTest() {
-        Music music = new Music("songs/a_test_sound.mp3");
+        Music music = new Music("./data/songs/a_test_sound.mp3");
         music.run();
         music.start();
         assertTrue(music.isAlive());
@@ -29,7 +29,7 @@ class MusicTest {
 
     @Test
     void stopTest() {
-        Music music = new Music("./songs/a_test_sound.mp3");
+        Music music = new Music("./data/songs/a_test_sound.mp3");
         music.start();
         assertTrue(music.isAlive());
         music.stop();
@@ -53,7 +53,7 @@ class MusicTest {
         final PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));
 
-        Music music = new Music("./songs/hello.txt");
+        Music music = new Music("./data/songs/hello.txt");
         music.run();
 
         assertEquals("File Not Found or Cant play, try again", outContent.toString());
@@ -65,7 +65,7 @@ class MusicTest {
     @Test
     void checkException1() {
         try {
-            Music music = new Music("./songs/hello.txt");
+            Music music = new Music("./data/songs/hello.txt");
             music.run();
         } catch (Exception e){
             fail("Exception!");
