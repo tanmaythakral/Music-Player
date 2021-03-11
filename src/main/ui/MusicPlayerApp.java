@@ -1,5 +1,6 @@
 package ui;
 
+import javazoom.jl.decoder.JavaLayerException;
 import model.GetMusic;
 import model.JsonReader;
 import model.JsonWriter;
@@ -98,6 +99,8 @@ public class MusicPlayerApp {
                 playlist();
             } else if (commands.equals("-modpl")) {
                 modifyplaylist();
+            } else if (commands.equals("-ff")) {
+                fastforward();
             } else if (commands.equals("-playpl")) {
                 playingMusic.suspend();
                 playplaylist();
@@ -107,6 +110,15 @@ public class MusicPlayerApp {
         }
     }
 
+
+    private void fastforward()  {
+        try {
+            playingMusic.skip(10000);
+        } catch (Exception e) {
+            System.out.println("End of Song");
+        }
+
+    }
 
     // EFFECTS: prints the user-made playlist from the stored json file
     private void playlist() {

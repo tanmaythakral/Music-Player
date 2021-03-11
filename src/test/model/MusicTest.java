@@ -53,7 +53,7 @@ class MusicTest {
         final PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));
 
-        Music music = new Music("./data/songs/hello.txt");
+        Music music = new Music("./data/songs/tet.txt");
         music.run();
 
         assertEquals("File Not Found or Cant play, try again", outContent.toString());
@@ -65,7 +65,7 @@ class MusicTest {
     @Test
     void checkException1() {
         try {
-            Music music = new Music("./data/songs/hello.txt");
+            Music music = new Music("./data/songs/test.txt");
             music.run();
         } catch (Exception e){
             fail("Exception!");
