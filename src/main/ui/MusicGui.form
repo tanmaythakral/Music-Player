@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ui.MusicGui">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="80" vgap="0">
+    <constraints>
+      <xy x="20" y="-1" width="1271" height="682"/>
+    </constraints>
+    <properties>
+      <autoscrolls value="true"/>
+      <preferredSize width="1800" height="1200"/>
+      <toolTipText value="Volume"/>
+    </properties>
+    <border type="none">
+      <font size="72"/>
+    </border>
+    <children>
+      <grid id="b59ee" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties>
+          <preferredSize width="100" height="60"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="c8c91" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints border-constraint="West"/>
+            <properties>
+              <preferredSize width="125" height="24"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+      <tabbedpane id="897f8" binding="tabbedPane1" default-binding="true">
+        <constraints border-constraint="East"/>
+        <properties>
+          <font size="36"/>
+          <preferredSize width="400" height="120"/>
+        </properties>
+        <border type="none">
+          <font size="72"/>
+        </border>
+        <children>
+          <grid id="6f3fc" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Playlist"/>
+            </constraints>
+            <properties/>
+            <border type="none">
+              <font size="48"/>
+            </border>
+            <children>
+              <component id="a4e54" class="javax.swing.JList" binding="list1" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+      <grid id="2cdaf" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="South"/>
+        <properties>
+          <preferredSize width="24" height="140"/>
+        </properties>
+        <border type="none">
+          <font/>
+        </border>
+        <children>
+          <component id="31f93" class="javax.swing.JButton" binding="pauseButton">
+            <constraints/>
+            <properties>
+              <preferredSize width="189" height="100"/>
+              <text value="Pause"/>
+            </properties>
+          </component>
+          <component id="ea42c" class="javax.swing.JButton" binding="resumeButton">
+            <constraints/>
+            <properties>
+              <preferredSize width="189" height="100"/>
+              <text value="Resume"/>
+            </properties>
+          </component>
+          <component id="be116" class="javax.swing.JButton" binding="fastforwardButton">
+            <constraints/>
+            <properties>
+              <margin top="0" left="0" bottom="0" right="0"/>
+              <preferredSize width="189" height="100"/>
+              <text value="Forward"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="90896" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="c8293" class="javax.swing.JList" binding="list2" custom-create="true" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <vspacer id="37fbe">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+          <component id="770ac" class="javax.swing.JLabel" binding="image" custom-create="true">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

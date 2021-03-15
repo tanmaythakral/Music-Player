@@ -112,10 +112,15 @@ public class MusicPlayerApp {
 
 
     private void fastforward()  {
+//        try {
+//            playingMusic.skip(10000);
+//        } catch (Exception e) {
+//            System.out.println("End of Song");
+//        }
         try {
-            playingMusic.skip(10000);
+            playingMusic.setVolume(-80);
         } catch (Exception e) {
-            System.out.println("End of Song");
+            System.out.println("dfvn");
         }
 
     }

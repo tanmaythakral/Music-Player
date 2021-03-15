@@ -37,4 +37,9 @@ public class Music extends Thread {
         player.skipMilliSeconds(skipnum);
     }
 
+    public void setVolume(int volume) throws JavaLayerException {
+        player.setVolume(-55);
+    }
+
+
 }
