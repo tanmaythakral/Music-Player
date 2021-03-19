@@ -1,7 +1,6 @@
 package ui;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 import com.mpatric.mp3agic.ID3v2;
 import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
@@ -13,21 +12,18 @@ import model.Music;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
-import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class MusicGui {
 
 
-    public JPanel panel1;
+    protected JPanel panel1;
     private JTabbedPane tabbedPane1;
     private JList list1;
     private JList list2;
@@ -35,8 +31,42 @@ public class MusicGui {
     private JButton resumeButton;
     private JButton fastforwardButton;
     private JLabel image;
-    Music playingMusic;
-    boolean playing;
+    private JButton playlistButton;
+    private JButton next;
+    private JLabel titleImage;
+    protected static Music playingMusic;
+    protected static boolean playing;
+    protected static boolean nextsong;
+    List playlists;
+
+    public void setNextsong(boolean nextsong) {
+        MusicGui.nextsong = nextsong;
+    }
+
+    public boolean isNextsong() {
+        return nextsong;
+    }
+
+
+    public List getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaying(boolean playing) {
+        MusicGui.playing = playing;
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
+
+    public void setPlayingMusic(Music playingMusic) {
+        this.playingMusic = playingMusic;
+    }
+
+    public Music getPlayingMusic() {
+        return playingMusic;
+    }
 
     private void changeCoverArt(String songPath) {
         File songfile = new File(songPath);
@@ -112,22 +142,32 @@ public class MusicGui {
                 }
             }
         });
+        playlistButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ActionWorker().execute();
+            }
+        });
+        next.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nextsong = !nextsong;
+            }
+        });
     }
 
 
     private void createUIComponents() throws InvalidDataException, IOException, UnsupportedTagException {
         GetMusic getMusic = new GetMusic();
         String musiclist[] = getMusic.openFolder("data/songs").toArray(new String[0]);
-        // TODO: place custom component creation code here
-
         list2 = new JList(musiclist);
-
         JsonReader jsonReader = new JsonReader("data/playlistdata.json");
 
 
         try {
             List playlists = jsonReader.read();
             playlists = jsonReader.read();
+            this.playlists = playlists;
             list1 = new JList(playlists.toArray());
             System.out.println(playlists);
 
@@ -136,7 +176,7 @@ public class MusicGui {
         }
         list1 = new JList(musiclist);
         image = new JLabel(new ImageIcon("C:\\Users\\tanma\\Downloads\\makise.jpg"));
-
+        titleImage = new JLabel(new ImageIcon("src\\icons\\sound-waves.png"));
 
     }
 }
