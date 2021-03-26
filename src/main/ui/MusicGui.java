@@ -93,7 +93,7 @@ public class MusicGui {
                     Icon iconImage = new ImageIcon(img);
                     image.setIcon(iconImage);
                 } catch (Exception e) {
-                    image.setIcon(new ImageIcon("C:\\Users\\tanma\\Downloads\\makise.jpg"));
+                    image.setIcon(new ImageIcon("src/icons/makise.jpg"));
                 }
             }
         } catch (Exception e) {
@@ -298,7 +298,7 @@ public class MusicGui {
         addtoplaylist = new JButton(new ImageIcon("src/icons/icons8-add-song-50.png"));
         nextButton = new JButton(new ImageIcon("src/icons/icons8-next-page-50.png"));
         pauseButton = new JButton(new ImageIcon("src/icons/icons8-play-50.png"));
-        image = new JLabel(new ImageIcon("C:\\Users\\tanma\\Downloads\\makise.jpg"));
+        image = new JLabel(new ImageIcon("src/icons/makise.jpg"));
 
     }
 }
