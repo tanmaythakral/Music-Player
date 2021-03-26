@@ -279,18 +279,18 @@ public class MusicGui {
         JsonReader jsonReader = new JsonReader("data/playlistdata.json");
 
         try {
-            this.playlists = jsonReader.read();
+            playlists = jsonReader.read();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
-        for (String song : this.playlists) {
+        for (String song : playlists) {
             l1.addElement(song);
         }
 
         this.l1 = l1;
-        System.out.println(this.playlists);
+        System.out.println(playlists);
         playlist = new JList(this.l1);
 
         loadmusic = new JButton(new ImageIcon("src/icons/icons8-load-resume-template-48.png"));

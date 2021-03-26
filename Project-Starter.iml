@@ -13,9 +13,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="JLayer1.0" level="project" />
+    <orderEntry type="library" exported="" name="JLayer1.0" level="project" />
     <orderEntry type="library" name="lib  (4)" level="project" />
-    <orderEntry type="library" name="mp3agic-0.9.1" level="project" />
-    <orderEntry type="library" name="flatlaf-1.0" level="project" />
   </component>
 </module>
