@@ -4,17 +4,19 @@ import javazoom.jl.decoder.JavaLayerException;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class Main {
 
-    public static void main(String[] args) throws JavaLayerException, FileNotFoundException {
+    public static void main(String[] args) throws JavaLayerException, IOException {
 //        try {
 //            new MusicPlayerApp();
 //        } catch (FileNotFoundException e) {
 //            e.printStackTrace();
 //        }
+
+
         MusicGui musicInterface = new MusicGui();
         JFrame frame = new JFrame("App");
         frame.setPreferredSize(new Dimension(1800, 1200));

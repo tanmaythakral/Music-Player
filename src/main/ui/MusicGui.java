@@ -9,14 +9,15 @@ import model.GetMusic;
 import model.JsonReader;
 import model.Music;
 
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,7 +26,7 @@ public class MusicGui {
 
     protected JPanel panel1;
     private JTabbedPane tabbedPane1;
-    private JList list1;
+    private JList playlist;
     private JList list2;
     private JButton pauseButton;
     private JButton resumeButton;
@@ -33,6 +34,7 @@ public class MusicGui {
     private JLabel image;
     private JButton playlistButton;
     private JButton next;
+    private JButton loadmusic;
     private JLabel titleImage;
     protected static Music playingMusic;
     protected static boolean playing;
@@ -68,7 +70,7 @@ public class MusicGui {
         return playingMusic;
     }
 
-    private void changeCoverArt(String songPath) {
+    void changeCoverArt(String songPath) {
         File songfile = new File(songPath);
         try {
             Mp3File song = new Mp3File(songfile);
@@ -154,27 +156,52 @@ public class MusicGui {
                 nextsong = !nextsong;
             }
         });
+        loadmusic.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+                j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                j.setAcceptAllFileFilterUsed(false);
+                j.setDialogTitle("Select a .txt file");
+                j.showOpenDialog(null);
+
+                GetMusic getMusic = new GetMusic();
+                String[] musiclist = getMusic.openFolder(j.getSelectedFile().getAbsolutePath()).toArray(new String[0]);
+                System.out.println(musiclist);
+                DefaultListModel<String> model = new DefaultListModel<>();
+                for (String s : musiclist) {
+                    model.addElement(s);
+                }
+                list2.setModel(model);
+            }
+        });
     }
 
 
     private void createUIComponents() throws InvalidDataException, IOException, UnsupportedTagException {
-        GetMusic getMusic = new GetMusic();
-        String musiclist[] = getMusic.openFolder("data/songs").toArray(new String[0]);
-        list2 = new JList(musiclist);
+
+        list2 = new JList();
+
         JsonReader jsonReader = new JsonReader("data/playlistdata.json");
 
-
         try {
-            List playlists = jsonReader.read();
-            playlists = jsonReader.read();
-            this.playlists = playlists;
-            list1 = new JList(playlists.toArray());
-            System.out.println(playlists);
-
+            this.playlists = jsonReader.read();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        list1 = new JList(musiclist);
+
+
+        List<String> songsList = new ArrayList<String>();
+        DefaultListModel<String> l1 = new DefaultListModel<>();
+        songsList = jsonReader.read();
+
+        for (String song : songsList) {
+            l1.addElement(song);
+        }
+
+        System.out.println(songsList);
+        playlist = new JList(l1);
+
         image = new JLabel(new ImageIcon("C:\\Users\\tanma\\Downloads\\makise.jpg"));
         titleImage = new JLabel(new ImageIcon("src\\icons\\sound-waves.png"));
 

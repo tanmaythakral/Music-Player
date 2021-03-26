@@ -24,7 +24,7 @@ public class JsonWriter {
     // MODIFIES : this
     // EFFECT: Writes the objects from a list to a  Json file
     public void write() throws FileNotFoundException {
-        
+
 
         LinkedHashMap linkedHashMap = new LinkedHashMap(songlist.size());
 
