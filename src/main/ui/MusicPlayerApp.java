@@ -1,6 +1,5 @@
 package ui;
 
-import javazoom.jl.decoder.JavaLayerException;
 import model.GetMusic;
 import model.JsonReader;
 import model.JsonWriter;
@@ -101,9 +100,6 @@ public class MusicPlayerApp {
                 modifyplaylist();
             } else if (commands.equals("-ff")) {
                 fastforward();
-            } else if (commands.equals("-playpl")) {
-                playingMusic.suspend();
-                playplaylist();
             } else {
                 commandList();
             }

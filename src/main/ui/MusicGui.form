@@ -23,7 +23,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="dd71b" class="javax.swing.JButton" binding="loadmusic">
+          <component id="dd71b" class="javax.swing.JButton" binding="loadmusic" custom-create="true">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -34,7 +34,7 @@
               <font size="28"/>
               <foreground color="-16777216"/>
               <preferredSize width="189" height="100"/>
-              <text value="Load Music"/>
+              <text value="Load Songs"/>
             </properties>
           </component>
           <hspacer id="cf68e">
@@ -81,8 +81,9 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-1"/>
-                  <foreground color="-14997972"/>
+                  <background color="-14472919"/>
+                  <font size="26"/>
+                  <foreground color="-1"/>
                   <selectionForeground color="-14997972"/>
                 </properties>
               </component>
@@ -100,58 +101,48 @@
           <font/>
         </border>
         <children>
-          <component id="10751" class="javax.swing.JButton">
+          <component id="10751" class="javax.swing.JButton" binding="addtoplaylist" custom-create="true">
             <constraints/>
             <properties>
               <background color="-4464134"/>
               <borderPainted value="true"/>
               <font size="28"/>
               <foreground color="-16777216"/>
-              <preferredSize width="189" height="100"/>
-              <text value="Add To Playlist"/>
+              <preferredSize width="250" height="100"/>
+              <text value="Add/Remove"/>
             </properties>
           </component>
-          <component id="b75ab" class="javax.swing.JButton" binding="next">
+          <component id="b75ab" class="javax.swing.JButton" binding="nextButton" custom-create="true">
             <constraints/>
             <properties>
               <background color="-4464134"/>
               <borderPainted value="true"/>
               <font size="28"/>
               <foreground color="-16777216"/>
-              <preferredSize width="189" height="100"/>
+              <preferredSize width="250" height="100"/>
               <text value="Next"/>
             </properties>
           </component>
-          <component id="31f93" class="javax.swing.JButton" binding="pauseButton">
+          <component id="31f93" class="javax.swing.JButton" binding="pauseButton" custom-create="true">
             <constraints/>
             <properties>
               <background color="-4464134"/>
               <borderPainted value="true"/>
               <font size="28"/>
               <foreground color="-16777216"/>
-              <preferredSize width="189" height="100"/>
-              <text value="Pause"/>
+              <preferredSize width="250" height="100"/>
+              <text value="Resume/Pause"/>
             </properties>
           </component>
-          <component id="ea42c" class="javax.swing.JButton" binding="resumeButton">
-            <constraints/>
-            <properties>
-              <background color="-4464134"/>
-              <font size="28"/>
-              <foreground color="-16777216"/>
-              <preferredSize width="189" height="100"/>
-              <text value="Resume"/>
-            </properties>
-          </component>
-          <component id="be116" class="javax.swing.JButton" binding="fastforwardButton">
+          <component id="be116" class="javax.swing.JButton" binding="fastforwardButton" custom-create="true">
             <constraints/>
             <properties>
               <background color="-4464134"/>
               <font size="28"/>
               <foreground color="-16777216"/>
               <margin top="0" left="0" bottom="0" right="0"/>
-              <preferredSize width="189" height="100"/>
-              <text value="Forward"/>
+              <preferredSize width="250" height="100"/>
+              <text value="Fast-Forward"/>
             </properties>
           </component>
         </children>
