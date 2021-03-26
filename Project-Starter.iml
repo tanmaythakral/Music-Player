@@ -19,11 +19,11 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="module-library">
       <library>
-        <CLASSES />
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/lib/JLayer1.0.1" />
+        </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="file://$USER_HOME$/Downloads/MyJlayer-master/src" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
   </component>
