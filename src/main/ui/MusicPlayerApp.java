@@ -98,8 +98,6 @@ public class MusicPlayerApp {
                 playlist();
             } else if (commands.equals("-modpl")) {
                 modifyplaylist();
-            } else if (commands.equals("-ff")) {
-                fastforward();
             } else {
                 commandList();
             }
@@ -107,19 +105,19 @@ public class MusicPlayerApp {
     }
 
 
-    private void fastforward()  {
+//    private void fastforward()  {
+////        try {
+////            playingMusic.skip(10000);
+////        } catch (Exception e) {
+////            System.out.println("End of Song");
+////        }
 //        try {
-//            playingMusic.skip(10000);
+//            playingMusic.setVolume(-80);
 //        } catch (Exception e) {
-//            System.out.println("End of Song");
+//            System.out.println("dfvn");
 //        }
-        try {
-            playingMusic.setVolume(-80);
-        } catch (Exception e) {
-            System.out.println("dfvn");
-        }
-
-    }
+//
+//    }
 
     // EFFECTS: prints the user-made playlist from the stored json file
     private void playlist() {
