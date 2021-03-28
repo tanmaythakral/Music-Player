@@ -21,7 +21,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-
+//Ui Class for the Music Player
 public class MusicGui {
 
 
@@ -78,6 +78,7 @@ public class MusicGui {
         return playingMusic;
     }
 
+    //Effect: Changes the image to the cover art of the song if the cover art is availible else displays default image
     void changeCoverArt(String songPath) {
         File songfile = new File(songPath);
         try {
@@ -102,6 +103,7 @@ public class MusicGui {
 
     }
 
+    //Effect: Constructor for the class
     public MusicGui() {
 
         initFlatLaf();
@@ -115,6 +117,7 @@ public class MusicGui {
         addtoplaylistListener();
     }
 
+    //Effect: Listenener method for the allsonglist , Listens to the mouse click
     private void allsonglistListener() {
         list2.addMouseListener(new MouseAdapter() {
             @Override
@@ -125,6 +128,7 @@ public class MusicGui {
         });
     }
 
+    //Effect: Listenener method for the fast forward button , Listens to the mouse click
     private void fastforwardbuttonListener() {
         fastforwardButton.addActionListener(new ActionListener() {
             @Override
@@ -134,6 +138,7 @@ public class MusicGui {
         });
     }
 
+    //Effect: Listenener method for the pause/resume button , Listens to the mouse click
     private void pausebuttonListener() {
         pauseButton.addActionListener(new ActionListener() {
             @Override
@@ -144,6 +149,7 @@ public class MusicGui {
         });
     }
 
+    //Effect: Listenener method for the play playlist button , Listens to the mouse click
     private void playlistbuttonListener() {
         playlistButton.addActionListener(new ActionListener() {
             @Override
@@ -153,6 +159,7 @@ public class MusicGui {
         });
     }
 
+    //Effect: Listenener method for the next button , Listens to the mouse click
     private void nextbuttonListenener() {
         nextButton.addActionListener(new ActionListener() {
             @Override
@@ -162,6 +169,8 @@ public class MusicGui {
         });
     }
 
+    //Effect: Listenener method for the add to playlist button , Listens to the mouse click
+    //Modifies: this
     private void addtoplaylistListener() {
         addtoplaylist.addActionListener(new ActionListener() {
             @Override
@@ -171,6 +180,8 @@ public class MusicGui {
         });
     }
 
+    //Effect: Listenener method for the load button , Listens to the mouse click
+    //modifies: this
     private void loadButtonListener() {
         loadmusic.addActionListener(new ActionListener() {
             @Override
@@ -180,6 +191,7 @@ public class MusicGui {
         });
     }
 
+    //Effect: Initialises flat laf dependency
     private void initFlatLaf() {
         try {
             UIManager.setLookAndFeel(new FlatDarculaLaf());
@@ -188,6 +200,7 @@ public class MusicGui {
         }
     }
 
+    //Effect: Action method for the add to playlist button , adds/removes the song from playlist
     private void addtoplaylistAction() {
         if (!l1.contains(currentlyPlaying)) {
             l1.addElement(currentlyPlaying);
@@ -212,6 +225,7 @@ public class MusicGui {
         }
     }
 
+    //Effect: Action method for the load button , loads the songs from the folder
     private void loadMusicAction() {
         JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -230,6 +244,7 @@ public class MusicGui {
         list2.setModel(model);
     }
 
+    //Effect: Action method for the list , plays the selected song
     private void allsonglistAction() {
         if (playing) {
             playingMusic.stop();
@@ -252,6 +267,7 @@ public class MusicGui {
         }
     }
 
+    //Effect: Action method for the fast forward button , +10s the song being played
     private void fastforwardAction() {
         try {
             playingMusic.skip(10000);
@@ -260,6 +276,7 @@ public class MusicGui {
         }
     }
 
+    //Effect: Action method for the pause button , pauses/resume the song being played
     private void pauseAction() {
         if (isPaused) {
             playingMusic.resume();
@@ -270,7 +287,8 @@ public class MusicGui {
         }
     }
 
-
+    //Effect: Method for custom creation of the components
+    //Modifies : this
     private void createUIComponents() throws InvalidDataException, IOException, UnsupportedTagException {
 
         DefaultListModel<String> l1 = new DefaultListModel<>();

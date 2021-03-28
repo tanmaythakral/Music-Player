@@ -28,4 +28,4 @@ my interest with the Software construction which is very exciting.
 
 4. As a user , I want to play next songs in the folder.
 
-5. As a user , I want to create playlist of the songs.
+5. As a user , I want to create and read playlist of the songs and store them into as file

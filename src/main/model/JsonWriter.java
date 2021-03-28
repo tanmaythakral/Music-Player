@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+//Json Writer class
 public class JsonWriter {
     JSONArray jsonObject;
     List songlist;

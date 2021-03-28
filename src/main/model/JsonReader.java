@@ -42,6 +42,8 @@ public class JsonReader {
         return songlist;
     }
 
+
+    //Effect : read the file from the source
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
