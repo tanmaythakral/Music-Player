@@ -1,8 +1,6 @@
 package model;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -11,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MusicTest {
 
-    @BeforeEach
-    void runBefore() {
-        Music music = new Music("./data/songs/a_test_sound.mp3");
-        music.run();
-    }
+//    @BeforeEach
+//    void runBefore() {
+//        Music music = new Music("./data/songs/a_test_sound.mp3");
+//        music.run();
+//    }
 
     @Test
     void playTest() {
@@ -64,12 +62,8 @@ class MusicTest {
 
     @Test
     void checkException1() {
-        try {
-            Music music = new Music("./data/songs/test.txt");
-            music.run();
-        } catch (Exception e){
-            fail("Exception!");
-        }
+        Music music = new Music("./data/songs/tests.txt");
+        music.run();
     }
 
 }
