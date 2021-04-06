@@ -39,4 +39,4 @@ Class Music in the model class is robust.
 
 I believe that the MusicGui class isnt very cohesive. I think that some of the methods can be refactored out as to improve cohesion. 
 
-Some of the methods in the classes have duplicate lines , those lines can be refactored out as another method.
+I think my program could have improved if I had used Observer patterns as the program has components that requires similar behaviour.

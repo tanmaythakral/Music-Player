@@ -11,7 +11,6 @@ public class Music extends Thread {
     String songPath;
     Player player;
 
-    //REQUIRES: songPath to be string with non-zero length that corresponds to an existing path
     // EFFECTS : constructor method for music class
     public Music(String songPath) {
         this.songPath = songPath;
