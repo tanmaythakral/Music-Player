@@ -30,13 +30,4 @@ my interest with the Software construction which is very exciting.
 
 5. As a user , I want to create and read playlist of the songs and store them into as file
 
-##Phase 4: Task 2
 
-Task 2 has been completed
-Class Music in the model class is robust.
-
-##Phase 4: Task 3
-
-I believe that the MusicGui class isnt very cohesive. I think that some of the methods can be refactored out as to improve cohesion. 
-
-I think my program could have improved if I had used Observer patterns as the program has components that requires similar behaviour.
