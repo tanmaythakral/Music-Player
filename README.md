@@ -18,7 +18,7 @@ Songs have been of personal interest of mine and I really like listening to song
 my interest with the Software construction which is very exciting.
 
 
-##User Stories
+**User Stories**
 
 1. As a user, I want to be able to load up songs from songs folder
 
